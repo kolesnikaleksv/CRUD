@@ -2,12 +2,22 @@ import EmployeesListItem from "../employees-list-item/employees-list-item";
 
 import './employees-list.css';
 
-const EmployeesList = () => {
+const EmployeesList = ({data}) => {
+    const elements = data.map(item => {
+        
+        return(
+            // <EmployeesListItem name={item.name} surname={item.surname} salary={item.salary}/>
+// or we can use the spread operator
+            
+            <EmployeesListItem {...item} />
+        )
+    })
     return (
         <ul className="app-list list-group">
-            <EmployeesListItem name="Kyrulo" surname="Kolisnyk" salary={12}/>
-            <EmployeesListItem name="lyubov" surname="Monakova" salary={450}/>
-            <EmployeesListItem name="Oleksandr" surname="Kolisnyk" salary={0}/>
+            {elements}
+            {/* <EmployeesListItem name={name} surname="Kolisnyk" salary={12}/>
+            <EmployeesListItem name={name} surname="Monakova" salary={450}/>
+            <EmployeesListItem name={name} surname="Kolisnyk" salary={0}/> */}
         </ul>
     )
 }
