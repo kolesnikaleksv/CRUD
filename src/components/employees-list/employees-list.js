@@ -2,22 +2,29 @@ import EmployeesListItem from "../employees-list-item/employees-list-item";
 
 import './employees-list.css';
 
-const EmployeesList = ({data}) => {
-    const elements = data.map(item => {
-        
-        return(
-            // <EmployeesListItem name={item.name} surname={item.surname} salary={item.salary}/>
-// or we can use the spread operator
+    const EmployeesList = ({data}) => {
+        const elements = data.map(item => {
+//residal destructuring or partial destructurig
+//we can pull the props individually from the item object
+            const {id, ...itemProps} = item;
+            return(
+                
+                <EmployeesListItem key={id} {...itemProps} />
+            )
+        })
+//if the element does not change the order in the list we can assign it its number
+    // const EmployeesList = ({data}) => {
+    //     const elements = data.map((item,i) => {
             
-            <EmployeesListItem {...item} />
-        )
-    })
+    //         return(
+                
+    //             <EmployeesListItem key={i} {...item} />
+    //         )
+    //     })
+    // console.log(elements);
     return (
         <ul className="app-list list-group">
             {elements}
-            {/* <EmployeesListItem name={name} surname="Kolisnyk" salary={12}/>
-            <EmployeesListItem name={name} surname="Monakova" salary={450}/>
-            <EmployeesListItem name={name} surname="Kolisnyk" salary={0}/> */}
         </ul>
     )
 }
