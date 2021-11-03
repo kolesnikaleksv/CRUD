@@ -1,24 +1,46 @@
+import {Component} from 'react';
 import './employees-add-form.css'
 
-const EmployeesAddForm = () => {
-    return(
-        <div className="app-add-form">
-            <h3>Add new employee</h3>
-            <form className="add-form d-flex">
-                <input 
-                    type="text" 
-                    className="form-control new-post-label"
-                    placeholder="What's his name?" />
-                <input 
-                    type="number" 
-                    className="form-control new-post-label"
-                    placeholder="Salary in $?" />
-                <button 
-                type='button'
-                className="btn btn-outline-light">Add</button>
-            </form>
-        </div>
-    );
+class EmployeesAddForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            salary: ''
+        }
+    }
+    onValueChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value // This we can connect up to two "input" at the same time
+        });
+    }
+    render() {
+        const {name, salary} = this.state;
+        return(
+            <div className="app-add-form">
+                <h3>Add new employee</h3>
+                <form className="add-form d-flex">
+                    <input 
+                        type="text"
+                        name="name"
+                        value={name}
+                        className="form-control new-post-label"
+                        placeholder="What's his name?" 
+                        onChange={this.onValueChange} />
+                    <input 
+                        type="number"
+                        name="salary"
+                        value={salary}
+                        className="form-control new-post-label"
+                        placeholder="Salary in $?" 
+                        onChange={this.onValueChange} />
+                    <button 
+                    type='button'
+                    className="btn btn-outline-light">Add</button>
+                </form>
+            </div>
+        );
+    }
 }
 
 export default EmployeesAddForm;
