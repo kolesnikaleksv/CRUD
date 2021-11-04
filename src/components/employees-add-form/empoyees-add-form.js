@@ -23,7 +23,7 @@ class EmployeesAddForm extends Component {
                     <input 
                         type="text"
                         name="name"
-                        value={name}
+                        value={name}// property 'value' fot managed components
                         className="form-control new-post-label"
                         placeholder="What's his name?" 
                         onChange={this.onValueChange} />
