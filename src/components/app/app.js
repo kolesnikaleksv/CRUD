@@ -28,26 +28,42 @@ class App extends Component {
 
         })
     }
-    onAddEmployee = (salary, name) => {
-        this.setState(({data}) => {
-            // const newEmployee = data.map();
+    // onAddEmployee = (salary, name) => {
+    //     this.setState(({data}) => {
+    //         // const newEmployee = data.map();
             
-            // return  console.log('hi', name, salary , this.maxId++);
-            // const newEmployees = [...data, {
-            //     name: name,
-            //     salary: salary,
-            //     id: this.maxId++
-            // }]
-            // return console.log({
-            //     name: name,
-            //     salary: salary,
-            //     id: this.maxId++
-            // })
-            // return console.log(newEmployees);
-            return ({
-                data: [...data, {name, salary, id: this.maxId++}]
-            })
-        })
+    //         // return  console.log('hi', name, salary , this.maxId++);
+    //         // const newEmployees = [...data, {
+    //         //     name: name,
+    //         //     salary: salary,
+    //         //     id: this.maxId++
+    //         // }]
+    //         // return console.log({
+    //         //     name: name,
+    //         //     salary: salary,
+    //         //     id: this.maxId++
+    //         // })
+    //         // return console.log(newEmployees);
+    //         return ({
+    //             data: [...data, {name, salary, id: this.maxId++}]
+    //         })
+    //     })
+    // }
+
+    // Да, пока могут добавляться пустые пользователи. Мы это еще исправим
+    addItem = (name, salary) => {
+        const newItem = {
+            name, 
+            salary,
+            increase: false,
+            id: this.maxId++
+        }
+        this.setState(({data}) => {
+            const newArr = [...data, newItem];
+            return {
+                data: newArr
+            }
+        });
     }
 
     render() {
@@ -64,7 +80,8 @@ class App extends Component {
                     data={this.state.data}
                     onDelete={this.deleteItem} />
                 <EmployeesAddForm 
-                    onAddEmployee={this.onAddEmployee} />
+                    // onAddEmployee={this.onAddEmployee}
+                    onAdd={this.addItem} />
             </div>
         );
     }
