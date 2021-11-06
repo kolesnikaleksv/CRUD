@@ -18,28 +18,38 @@ class App extends Component {
             {name: 'Oleksandr Kolisnyk', salary: 0, increase: true, id: 3}
             ]
         }
+        this.maxId = 4;
     }
     deleteItem = (id) => {
-        // console.log(id);
         this.setState(({data}) => {
-            //const index = data.findIndex(elem => elem.id === id);
-            // console.log(index);
-            //data.splice(index, 1); //this is the wrong way. this way we changed our state
-//We have to create a new array with old elements, but without unnecessary ones
-//It is the principle immutability. There are several options
-//1 use the 'slice' method - it copies part of the array and creates a new one
-            //const before = data.slice(0, index);// it copies from null to index
-            //const after = data.slice(index + 1)// it copies from index + 1 to end
-
-            //const newArr = [...before, ...after]; //new array without the 'index'
-//2 we can filter it to form an array
             return({
-                // data: data
                 data: data.filter(item => item.id !== id)
             })
 
         })
     }
+    onAddEmployee = (salary, name) => {
+        this.setState(({data}) => {
+            // const newEmployee = data.map();
+            
+            // return  console.log('hi', name, salary , this.maxId++);
+            // const newEmployees = [...data, {
+            //     name: name,
+            //     salary: salary,
+            //     id: this.maxId++
+            // }]
+            // return console.log({
+            //     name: name,
+            //     salary: salary,
+            //     id: this.maxId++
+            // })
+            // return console.log(newEmployees);
+            return ({
+                data: [...data, {name, salary, id: this.maxId++}]
+            })
+        })
+    }
+
     render() {
    
         return(
@@ -52,9 +62,9 @@ class App extends Component {
                 </div>
                 <EmployeesList 
                     data={this.state.data}
-                    // onDelete={id => console.log(id)}
                     onDelete={this.deleteItem} />
-                <EmployeesAddForm />
+                <EmployeesAddForm 
+                    onAddEmployee={this.onAddEmployee} />
             </div>
         );
     }
