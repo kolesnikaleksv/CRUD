@@ -68,9 +68,11 @@ class App extends Component {
     }
 
     render() {
+        // const totalEmployees = this.state.data.length;
+        // const increaseEmployees = this.state.data.filter(item => item.increase === true).length;
+        // console.log(totalEmployees);
         const totalEmployees = this.state.data.length;
-        const increaseEmployees = this.state.data.filter(item => item.increase === true).length;
-        console.log(totalEmployees);
+        const increaseEmployees = this.state.data.filter(item => item.increase).length;
         return(
             <div className="app">
                 <AppInfo 
