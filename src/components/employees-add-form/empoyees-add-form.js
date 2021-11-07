@@ -1,4 +1,5 @@
 import {Component} from 'react';
+
 import './employees-add-form.css'
 
 class EmployeesAddForm extends Component {
@@ -24,7 +25,6 @@ class EmployeesAddForm extends Component {
     }
     render() {
         const {name, salary} = this.state;
-        // const {onAddEmployee} = this.props;
         return(
             <div className="app-add-form">
                 <h3>Add new employee</h3>
@@ -48,7 +48,6 @@ class EmployeesAddForm extends Component {
                     <button 
                     type='submit'
                     className="btn btn-outline-light"
-                    // onClick={() => onAddEmployee(salary, name)}
                     >Add</button>
                 </form>
             </div>
