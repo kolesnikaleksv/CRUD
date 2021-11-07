@@ -3,7 +3,6 @@ import './app-info.css';
 // const AppInfo = (props) => {
 const AppInfo = ({totalEmployees, increaseEmployees}) => {
 
-    // const {totalEmployees, increaseEmployees} = props;
     return(
         <div className="app-info">
             <h1>Accountin of employees in the company KIR</h1>
