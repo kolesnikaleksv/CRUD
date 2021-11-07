@@ -29,6 +29,21 @@ class App extends Component {
         })
     }
     
+    // addItem = (name, salary) => {
+    //     const newItem = {
+    //         name, 
+    //         salary,
+    //         star: false,
+    //         increase: false,
+    //         id: this.maxId++
+    //     }
+    //     this.setState(({data}) => {
+    //         const newArr = [...data, newItem];
+    //         return {
+    //             data: newArr
+    //         }
+    //     });
+    // }
     addItem = (name, salary) => {
         const newItem = {
             name, 
@@ -37,35 +52,16 @@ class App extends Component {
             increase: false,
             id: this.maxId++
         }
+       if(name !== '' && name.length >= 3 && salary !== '') {
+           console.log(name.length);
         this.setState(({data}) => {
             const newArr = [...data, newItem];
             return {
                 data: newArr
             }
         });
+       }
     }
-
-    // onToggleIncrease = (id) => {
-    //     this.setState(({data}) => ({
-    //         data: data.map(item => {
-    //             if(item.id === id) {
-    //                 return {...item, increase: !item.increase}
-    //             }
-    //             return item;
-    //         })
-    //     }))
-    // }
-    
-    // onToggleStar = (id) => {
-    //     this.setState(({data}) => ({
-    //         data: data.map(item => {
-    //             if(item.id === id) {
-    //                 return {...item, star: !item.star}
-    //             }
-    //             return item;
-    //         })
-    //     }))
-    // }
     onToggleProp = (id, prop) => {
         this.setState(({data}) => ({
             data: data.map(item => {
@@ -92,8 +88,6 @@ class App extends Component {
                 <EmployeesList 
                     data={this.state.data}
                     onDelete={this.deleteItem}
-                    // onToggleIncrease={this.onToggleIncrease}
-                    // onToggleStar={this.onToggleStar}
                     onToggleProp={this.onToggleProp} />
                 <EmployeesAddForm 
                     onAdd={this.addItem} />

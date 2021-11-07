@@ -11,9 +11,10 @@ class EmployeesAddForm extends Component {
         }
     }
     onValueChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value // This we can connect up to two "input" at the same time
-        });
+            this.setState({
+                [e.target.name]: e.target.value // This we can connect up to two "input" at the same time
+            });
+        
     }
     onSubmit = (e) => {
         e.preventDefault();
