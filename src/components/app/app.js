@@ -29,21 +29,6 @@ class App extends Component {
         })
     }
     
-    // addItem = (name, salary) => {
-    //     const newItem = {
-    //         name, 
-    //         salary,
-    //         star: false,
-    //         increase: false,
-    //         id: this.maxId++
-    //     }
-    //     this.setState(({data}) => {
-    //         const newArr = [...data, newItem];
-    //         return {
-    //             data: newArr
-    //         }
-    //     });
-    // }
     addItem = (name, salary) => {
         const newItem = {
             name, 
@@ -52,16 +37,31 @@ class App extends Component {
             increase: false,
             id: this.maxId++
         }
-       if(name !== '' && name.length >= 3 && salary !== '') {
-           console.log(name.length);
         this.setState(({data}) => {
             const newArr = [...data, newItem];
             return {
                 data: newArr
             }
         });
-       }
     }
+    // addItem = (name, salary) => {
+    //     const newItem = {
+    //         name, 
+    //         salary,
+    //         star: false,
+    //         increase: false,
+    //         id: this.maxId++
+    //     }
+    //    if(name !== '' && name.length >= 3 && salary !== '') {
+    //        console.log(name.length);
+    //     this.setState(({data}) => {
+    //         const newArr = [...data, newItem];
+    //         return {
+    //             data: newArr
+    //         }
+    //     });
+    //    }
+    // }
     onToggleProp = (id, prop) => {
         this.setState(({data}) => ({
             data: data.map(item => {
