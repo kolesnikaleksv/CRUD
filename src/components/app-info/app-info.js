@@ -1,11 +1,12 @@
 import './app-info.css';
 
-const AppInfo = () => {
+const AppInfo = (props) => {
+    const {totalEmployees, increaseEmployees} = props;
     return(
         <div className="app-info">
             <h1>Accountin of employees in the company KIR</h1>
-            <h2>Total number of employees: {}</h2>
-            <h2>Bonus will receive: {}</h2>
+            <h2>Total number of employees: {totalEmployees}</h2>
+            <h2>Bonus will receive: {increaseEmployees}</h2>
         </div>
     )
 }
