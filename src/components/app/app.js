@@ -16,7 +16,8 @@ class App extends Component {
             {name: 'lyubov Monakova', salary: 450, increase: true, star: false, id: 1},
             {name: 'Kyrulo Kolisnyk', salary: 12, increase: false, star: true, id: 2},
             {name: 'Oleksandr Kolisnyk', salary: 0, increase: true, star: false, id: 3}
-            ]
+            ],
+            term: ''
         }
         this.maxId = 4;
     }
@@ -44,24 +45,6 @@ class App extends Component {
             }
         });
     }
-    // addItem = (name, salary) => {
-    //     const newItem = {
-    //         name, 
-    //         salary,
-    //         star: false,
-    //         increase: false,
-    //         id: this.maxId++
-    //     }
-    //    if(name !== '' && name.length >= 3 && salary !== '') {
-    //        console.log(name.length);
-    //     this.setState(({data}) => {
-    //         const newArr = [...data, newItem];
-    //         return {
-    //             data: newArr
-    //         }
-    //     });
-    //    }
-    // }
     onToggleProp = (id, prop) => {
         this.setState(({data}) => ({
             data: data.map(item => {
@@ -72,9 +55,23 @@ class App extends Component {
             })
         }))
     }
+    searchEmp = (items, term) => {
+        if(term.length === 0) {
+            return items;
+        }
+        return items.filter(item => {
+            return item.name.indexOf(term) > -1;
+        })
+    }
+    onUpdateSearch = (term) => {
+        this.setState({term});
+    }
     render() {
+        const {data, term} = this.state;
         const totalEmployees = this.state.data.length;
         const increaseEmployees = this.state.data.filter(item => item.increase).length;
+        const visibleEmp = this.searchEmp(data, term);
+
         return(
             <div className="app">
                 <AppInfo 
@@ -82,11 +79,11 @@ class App extends Component {
                     increaseEmployees={increaseEmployees} />
     
                 <div className="search-panel">
-                    <SearchPanel />
+                    <SearchPanel onUpdateSearch={this.onUpdateSearch} />
                     <AppFilter />
                 </div>
                 <EmployeesList 
-                    data={this.state.data}
+                    data={visibleEmp}
                     onDelete={this.deleteItem}
                     onToggleProp={this.onToggleProp} />
                 <EmployeesAddForm 
