@@ -1,44 +1,32 @@
-import { Component } from 'react';
-
 import './app-filter.css';
 
-class AppFilter extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
+const AppFilter = (props) => {
+    const buttonData = [
+        {name: 'all', label: 'All employees'},
+        {name: 'star', label: 'To raise'},
+        {name: 'moreThen1000', label: 'Salary over 1000'}
+    ];
 
-    toFindEmpLocal = (e) => {
-        const find = e.currentTarget.getAttribute('data-toggle');
-        // const find = 'increase'
-        console.log(find);
-        this.props.toRise(find);
-
-    }
-    
-    render() {
+    const button = buttonData.map(({name, label}) => {
+        const active = props.filter === name;
+        const clazz = active ? "btn-light" : "btn-outline-light";
         return(
-            <div className="btn-group">
-                <button
-                className= 'btn btn-light'
+            <button
+            className= {`btn ${clazz}`}
+            key={name}
+            onClick={() => props.onFilterSelect(name)}
+            type='button'>
+                {label}
+            </button>
+        )
+    })
 
-                type='button'>
-                    All employees
-                </button>
-                <button
-                className= 'btn btn-outline-light'
-                type='button'
-                data-toggle="increase"
-                onClick={this.toFindEmpLocal} >
-                    To raise
-                </button>
-                <button
-                className= 'btn btn-outline-light'
-                type='button'>
-                    Salary over 1000
-                </button>
-            </div>
-        );
-    }
+    
+    return(
+        <div className="btn-group">
+            {button}
+        </div>
+    );
 }
 
 export default AppFilter;
