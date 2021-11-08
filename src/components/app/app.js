@@ -66,6 +66,13 @@ class App extends Component {
     onUpdateSearch = (term) => {
         this.setState({term});
     }
+    toRise = ( find) => {
+        // const findEmp = this.state.data.filter(item => item[find]);
+        this.setState(({data}) => ({
+         
+        data: data.filter(item => item[find])
+        }))
+    }
     render() {
         const {data, term} = this.state;
         const totalEmployees = this.state.data.length;
@@ -80,7 +87,7 @@ class App extends Component {
     
                 <div className="search-panel">
                     <SearchPanel onUpdateSearch={this.onUpdateSearch} />
-                    <AppFilter />
+                    <AppFilter toRise={this.toRise} />
                 </div>
                 <EmployeesList 
                     data={visibleEmp}
