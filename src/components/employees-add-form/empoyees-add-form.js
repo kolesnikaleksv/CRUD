@@ -3,13 +3,38 @@ import {Component} from 'react';
 import './employees-add-form.css'
 
 class EmployeesAddForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+// Class Fields
+// We can use the 'state' without creating the constructor
+
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         name: '',
+    //         salary: ''
+    //     }
+    // }
+
+        state = {
             name: '',
             salary: ''
         }
-    }
+//The static
+//A static method can be called through a dot. for example:
+//Math.random()
+//Methods of our class are not static so they can't be called through a dot
+//Let's call the method at the bottom of the page
+//EmployeesAddForm.onValueChange(); 
+//it won't work
+//let's create couple of function with the keyWord 'static'
+        static onLog = () => {
+            console.log("hey");
+        }
+//Let's call the method at the bottom of the page
+//We can also output the property
+        static logged = 'on';
+//Let's call the property at the bottom of the page
+//   console.log(EmployeesAddForm.logged);
+// in the console we receive - on
     onValueChange = (e) => {
             this.setState({
                 [e.target.name]: e.target.value // This we can connect up to two "input" at the same time
@@ -56,5 +81,8 @@ class EmployeesAddForm extends Component {
         );
     }
 }
+    console.log(EmployeesAddForm.logged);
 
+    // EmployeesAddForm.onLog();
+// EmployeesAddForm.onValueChange();
 export default EmployeesAddForm;
